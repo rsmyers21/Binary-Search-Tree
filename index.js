@@ -51,7 +51,37 @@ class BinarySearchTree {
             }
         }
     }
+
+    search(root, value) {
+        //If tree is empty:
+        if(!root){
+            return false;
+        }
+        //If tree is not empty:
+        else {
+            if(root.value === value) {
+                return true;
+            }
+            //If the the value if less than the root, it must be on the left side of the tree, so we navigate to the left side with the left child as the new root
+            else if(value < root.value) {
+                return this.search(root.left, value);
+            }
+            //If the the value if greater than the root, it must be on the right side of the tree, so we navigate to the right side with the right child as the new root
+            else {
+                return this.search(root.right, value);
+            }
+        }
+    }
 }
 
 tree = new BinarySearchTree()
 console.log(tree.isEmpty())
+
+tree.insert(8);
+tree.insert(6);
+tree.insert(10);
+console.log(tree.search(tree.root, 6));
+console.log(tree.search(tree.root, 8));
+console.log(tree.search(tree.root, 10));
+console.log(tree.search(tree.root, 12));
+
